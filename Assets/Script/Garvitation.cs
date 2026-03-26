@@ -8,6 +8,10 @@ public class Garvitation : MonoBehaviour
     public static List<Garvitation> otherObj;
     const float G = 0.000667f;
 
+    [SerializeField] bool planet = false;
+    [SerializeField] int orbitSpeed = 1000;
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -16,6 +20,12 @@ public class Garvitation : MonoBehaviour
             otherObj = new List<Garvitation>();
         }
         otherObj.Add(this);
+
+        if (!planet) 
+        {
+            rb.AddForce(Vector3.left * orbitSpeed);
+        }
+
     }
 
     private void FixedUpdate()
